@@ -30,9 +30,7 @@ namespace PasswordManager
             List<PWClass> result = PWManager.getPWSerialization();
             result.Sort((x, y) => string.Compare(x.Name, y.Name));
 
-            listBox1.DataSource = result;
-                  
-                
+            listBox1.DataSource = result;    
         }
 
         private void btnAddName_Click(object sender, EventArgs e)
@@ -40,12 +38,13 @@ namespace PasswordManager
             bool success = PWManager.savePWSerialization(txtName.Text, txtPW.Text);
             if (success)
             {
-                MessageBox.Show("Added");
                 ReloadPWs();
+                MessageBox.Show("Added");
                 txtName.Text = "";
                 txtPW.Text = "";
             }
-            else MessageBox.Show("Could not add student");
+
+            else MessageBox.Show("Could not add the item");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -66,11 +65,12 @@ namespace PasswordManager
                 bool success = PWManager.saveToXML(result);
                 if (success)
                 {
-                    MessageBox.Show("Removed");
                     ReloadPWs();
+                    MessageBox.Show("Removed");
                     txtName.Text = "";
                     txtPW.Text = "";
                 }
+
                 else MessageBox.Show("Could not remove the element");
             }
         }
